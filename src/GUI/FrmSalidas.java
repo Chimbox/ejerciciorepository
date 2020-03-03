@@ -5,12 +5,12 @@
  */
 package GUI;
 
-import repository.BarcoRepository;
-import repository.BarcoRepository;
-import repository.DestinoDAO;
-import repository.DestinoDAOImpl;
-import repository.SalidaDAO;
-import repository.SalidaDAOImpl;
+import repositories.BarcoRepository;
+import repositories.BarcoRepository;
+import DAOs.DestinoDAO;
+import DAOs.DestinoDAOImpl;
+import DAOs.SalidaDAO;
+import DAOs.SalidaDAOImpl;
 import control.Modelos;
 import java.awt.Dimension;
 import java.awt.Point;

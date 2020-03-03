@@ -5,8 +5,8 @@
  */
 package GUI;
 
-import repository.DestinoDAO;
-import repository.DestinoDAOImpl;
+import DAOs.DestinoDAO;
+import DAOs.DestinoDAOImpl;
 import control.Modelos;
 import java.awt.Dimension;
 import java.awt.Point;

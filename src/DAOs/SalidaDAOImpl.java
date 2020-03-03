@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package repository;
+package DAOs;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +14,7 @@ import objetosServicio.Fecha;
 import java.util.List;
 import negocio.Salida;
 import persistencia.ConnectionFactory;
+import repositories.BarcoRepository;
 
 /**
  *

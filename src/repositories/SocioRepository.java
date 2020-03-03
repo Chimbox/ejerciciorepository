@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package repository;
+package repositories;
 
 import persistencia.ConnectionFactory;
 import negocio.Socio;
@@ -18,12 +18,13 @@ import java.util.List;
  *
  * @author lv1013
  */
-public class SocioRepository extends BaseRepository {
+public class SocioRepository extends BaseRepository<Socio> {
 
     public SocioRepository(ConnectionFactory connectionFactory) {
         super(connectionFactory);
     }
 
+    @Override
     public Socio find(int id) throws Exception {
         final String SQL = "SELECT id, dni, nombre, direccion "
                 + "FROM socio WHERE id = ?";
@@ -44,6 +45,7 @@ public class SocioRepository extends BaseRepository {
         }
     }
 
+    @Override
     public List<Socio> getAll() throws Exception {
         List<Socio> lstSocios = new ArrayList<>();
         final String SQL = "SELECT id, dni, nombre, direccion "
@@ -63,6 +65,7 @@ public class SocioRepository extends BaseRepository {
         }
     }
 
+    @Override
     public List<Socio> getAllWith(String referencia) throws Exception {
         List<Socio> lstSocios = new ArrayList<>();
         final String SQL = "SELECT id, dni, nombre, direccion "
@@ -83,11 +86,10 @@ public class SocioRepository extends BaseRepository {
     }
 
     @Override
-    public void add(Object socioAdd) throws Exception {
+    public void add(Socio socio) throws Exception {
         final String SQL = "INSERT INTO socio(dni, nombre, direccion) VALUES(?, ?, ?)";
         try (Connection connection = this.getConnectionFactory().getConnection();
                 PreparedStatement statement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);) {
-            Socio socio=(Socio)socioAdd;
             statement.setString(1, socio.getDni());
             statement.setString(2, socio.getNombre());
             statement.setString(3, socio.getDireccion());
@@ -102,11 +104,10 @@ public class SocioRepository extends BaseRepository {
     }
 
     @Override
-    public void update(Object socioUpdate) throws Exception {
+    public void update(Socio socio) throws Exception {
         final String SQL = "UPDATE socio SET dni=?, nombre=?, direccion=? WHERE id=?";
         try (Connection connection = this.getConnectionFactory().getConnection();
                 PreparedStatement statement = connection.prepareStatement(SQL);) {
-            Socio socio=(Socio)socioUpdate;
             statement.setString(1, socio.getDni());
             statement.setString(2, socio.getNombre());
             statement.setString(3, socio.getDireccion());

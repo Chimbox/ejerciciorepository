@@ -5,8 +5,8 @@
  */
 package GUI;
 
-import repository.BarcoRepository;
-import repository.SocioRepository;
+import repositories.BarcoRepository;
+import repositories.SocioRepository;
 import control.Modelos;
 import java.awt.Dimension;
 import java.awt.Point;

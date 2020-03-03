@@ -5,8 +5,8 @@
  */
 package GUI;
 
-import repository.SocioRepository;
-import repository.SocioRepository;
+import repositories.SocioRepository;
+import repositories.SocioRepository;
 import com.sun.glass.events.KeyEvent;
 import control.Modelos;
 import java.awt.Dimension;

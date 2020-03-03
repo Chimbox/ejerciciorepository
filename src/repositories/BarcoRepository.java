@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package repository;
+package repositories;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ import persistencia.ConnectionFactory;
  *
  * @author Invitado
  */
-public class BarcoRepository extends BaseRepository {
+public class BarcoRepository extends BaseRepository<Barco> {
 
     private final SocioRepository socios;
 
@@ -26,6 +26,7 @@ public class BarcoRepository extends BaseRepository {
         socios = new SocioRepository(this.getConnectionFactory()) {};
     }
 
+    @Override
     public Barco find(int numMatricula) throws Exception {
         final String SQL = "SELECT nombre, num_amarre, cuota, socio_id "
                 + "FROM barco WHERE num_matricula = ?";
@@ -47,6 +48,7 @@ public class BarcoRepository extends BaseRepository {
         }
     }
 
+    @Override
     public List<Barco> getAll() throws Exception {
         List<Barco> lstBarcos = new ArrayList<>();
         final String SQL = "SELECT num_matricula, nombre, num_amarre, cuota, socio_id "
@@ -88,11 +90,10 @@ public class BarcoRepository extends BaseRepository {
     }
 
     @Override
-    public void add(Object barcoAdd) throws Exception {
+    public void add(Barco barco) throws Exception {
         final String SQL = "INSERT INTO barco(num_matricula, nombre, num_amarre, cuota, socio_id) VALUES(?, ?, ?, ?, ?)";
         try (Connection connection = this.getConnectionFactory().getConnection();
                 PreparedStatement statement = connection.prepareStatement(SQL);) {
-            Barco barco=(Barco)barcoAdd;
             System.out.println(barco);
 
             statement.setInt(1, barco.getNumMatricula());
@@ -106,11 +107,10 @@ public class BarcoRepository extends BaseRepository {
     }
 
     @Override
-    public void update(Object barcoUpdate) throws Exception {
+    public void update(Barco barco) throws Exception {
         final String SQL = "UPDATE barco SET nombre=?, num_amarre=?, cuota=?, socio_id=? WHERE num_matricula=?";
         try (Connection connection = this.getConnectionFactory().getConnection();
                 PreparedStatement statement = connection.prepareStatement(SQL);) {
-            Barco barco=(Barco)barcoUpdate;
             statement.setString(1, barco.getNombre());
             statement.setShort(2, barco.getNumAmarre());
             statement.setDouble(3, barco.getCuota());
